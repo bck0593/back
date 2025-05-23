@@ -1,7 +1,7 @@
 name: Build and deploy Python app to Azure Web App
 
 env:
-  AZURE_WEBAPP_NAME: your-app-name
+  AZURE_WEBAPP_NAME:app-001-step3-1-suzuyu-node-29   # AzureのWeb App名に置き換えてください
   PYTHON_VERSION: '3.8'
 
 on:
@@ -23,8 +23,7 @@ jobs:
         uses: actions/setup-python@v3
         with:
           python-version: ${{ env.PYTHON_VERSION }}
-          # キャッシュは一旦コメントアウト
-          # cache: 'pip'
+          # cache: 'pip'  # 必要に応じてコメント解除してください
 
       - name: Install dependencies
         run: |
@@ -54,6 +53,11 @@ jobs:
         with:
           name: python-app
           path: .
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
