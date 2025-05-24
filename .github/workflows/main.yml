@@ -1,7 +1,7 @@
 name: Build and deploy Python app to Azure Web App
 
 env:
-  AZURE_WEBAPP_NAME: app-001-step3-1-suzuyu-node-29
+  AZURE_WEBAPP_NAME: app-001-step3-1-suzuyu-py-29
   PYTHON_VERSION: '3.10'
 
 on:
