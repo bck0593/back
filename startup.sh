@@ -1,12 +1,10 @@
 #!/bin/bash
 
-# 仮想環境がなければ作成
-python -m venv antenv
-source antenv/bin/activate
+# pipを最新版にアップグレード
+pip install --upgrade pip
 
 # 依存パッケージをインストール
-pip install --upgrade pip
 pip install -r requirements.txt
 
-# アプリケーションを起動
-exec gunicorn -w 4 -k uvicorn.workers.UvicornWorker app:app
+# アプリケーションをgunicornで起動（4ワーカー・uvicornワーカー）
+exec gunicorn -w 4 -k uvicorn.workers.UvicornWorker app:app --bind 0.0.0.0:8000
