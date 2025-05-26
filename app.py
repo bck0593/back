@@ -54,9 +54,9 @@ app.add_middleware(
 )
 
 
-@app.get("/")
-def index():
-    return {"message": "FastAPI top page!"}
+# @app.get("/")
+# def index():
+#     return {"message": "FastAPI top page!"}
 
 
 @app.post("/customers")
