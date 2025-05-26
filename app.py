@@ -6,6 +6,11 @@ import uuid
 import json
 from db_control import crud, mymodels_MySQL
 
+# main.py
+import logging
+import sys
+from fastapi import FastAPI
+
 #MySQLのテーブル作成
 from db_control.create_tables_MySQL import init_db
 
@@ -26,6 +31,18 @@ class CustomerCreate(BaseModel):
     gender: str
 
 app = FastAPI()
+
+#検証
+logging.basicConfig(
+    stream=sys.stdout,
+    level=logging.INFO,
+    format="%(asctime)s - %(levelname)s - %(message)s"
+)
+
+@app.get("/")
+def root():
+    logging.info("✅ アクセスされたよ！！")
+    return {"message": "Hello Azure"}
 
 # CORSミドルウェアの設定
 app.add_middleware(
